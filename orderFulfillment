@@ -1,11 +1,10 @@
 const conn = new jsforce.Connection({ … });
 
 const eventData = {
-  Flight_Id__c: id,
-  Confirmation_Number__c: confirmationNumber
+  Description__c='Thanks for connecting to our application.Order has been received'
 };
 
-conn.sobject('Flight_Approved__e').create(eventData, (err, res) => {
+conn.sobject('Order_Fulfillment_Event__e').create(eventData, (err, res) => {
   if (err) {
       console.error(err);
   } else {
