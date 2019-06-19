@@ -1,13 +1,19 @@
-const conn = new jsforce.Connection({ … });
-
-const eventData = {
-  Description__c='Thanks for connecting to our application.Order has been received'
-};
-
-conn.sobject('Order_Fulfillment_Event__e').create(eventData, (err, res) => {
-  if (err) {
-      console.error(err);
-  } else {
-      console.log("Event published");
+public class Helper {
+  public static String jsonContent(List<Object> triggerNew) {
+    String newObjects = '[]';
+    if (triggerNew != null) {
+      newObjects = JSON.serialize(triggerNew);
+    }
+    String content = '{"new": ' + newObjects}';
+    return content;
   }
-});
+  @future(callout=true) public static void callout(String url, String content) {
+    Http h = new Http();
+    HttpRequest req = new HttpRequest();
+    req.setEndpoint(url);
+    req.setMethod('POST');
+    req.setHeader('Content-Type', 'application/json');
+    req.setBody(content);
+    h.send(req);
+  }
+}
