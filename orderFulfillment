@@ -1,0 +1,14 @@
+const conn = new jsforce.Connection({ … });
+
+const eventData = {
+  Flight_Id__c: id,
+  Confirmation_Number__c: confirmationNumber
+};
+
+conn.sobject('Flight_Approved__e').create(eventData, (err, res) => {
+  if (err) {
+      console.error(err);
+  } else {
+      console.log("Event published");
+  }
+});
