@@ -1,4 +1,9 @@
-app.post("/new_contact", function(req, res) {
-  response.write("Connected with platform event");
-  res.status(201).end();
-}); 
+let event = nforce.createSObject('Order_Fulfillment_Event__e');
+event.set('Description__c','Hello from Platform Event');
+org.insert({sobject: event}, err => {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log("Order_Fulfillment_Event__e published");
+    }
+});
