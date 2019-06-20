@@ -1,9 +1,25 @@
-let event = nforce.createSObject('Order_Fulfillment_Event__e');
-event.set('Description__c','Hello from Platform Event');
-org.insert({sobject: event}, err => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log("Order_Fulfillment_Event__e published");
-    }
-});
+<html>
+<head>
+</head>
+<body>
+     <button type="button" onclick="MYFunction()">Click to publish an event!</button>
+    <script>
+        function myFunction() {
+        let event = nforce.createSObject('Order_Fulfillment_Event__e');
+        event.set('Description__c','Hello from Platform Event');
+        org.insert({sobject: event}, err => {
+          if (err) {
+             console.error(err);
+         } else {
+             console.log("Order_Fulfillment_Event__e published");
+          }
+        });        
+        }
+    </script>
+    
+  function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</body>
+</html>
+
